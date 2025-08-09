@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router"
+import { Route, Routes } from "react-router-dom"
 import HomePage from "./Pages/HomePage"
 import CreatePage from "./Pages/CreatePage"
 import NoteDetailPage from "./Pages/NoteDetailPage"

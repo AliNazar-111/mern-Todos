@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { ArrowLeftIcon } from "lucide-react";
 import toast from "react-hot-toast";

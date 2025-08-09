@@ -1,8 +1,8 @@
 "use client"
 
 import { PenSquareIcon, Trash2Icon } from "lucide-react"
-import { Link } from "react-router"
-import { formatDate } from "../lib/utils"
+import { Link } from "react-router-dom" // Changed import to react-router-dom
+import { formatDate } from "../utils/utils" // Corrected path to utils
 import toast from "react-hot-toast"
 import api from "../lib/axios"
 

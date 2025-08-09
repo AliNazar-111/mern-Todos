@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../componenets/navbar'
 import Ratelimited from '../componenets/Ratelimited';
 import toast from "react-hot-toast"
-import Note from '../../../Backend/src/models/Note';
 import NoteCard from '../componenets/NoteCard';
 import api from '../lib/axios';
 import NotesNotFound from '../componenets/notesNotFound';
+
 const HomePage = () => {
   const [isRatelimited , SetRateLimit] = useState(false);
   const [Notes,SetNotes] = useState([]);
@@ -31,6 +31,7 @@ useEffect(() => {
   }
   fetchnotes();
 },[])
+
   return (
     <div className='min-h-screen'>
   <Navbar />

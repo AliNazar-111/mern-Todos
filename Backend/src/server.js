@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url"; // Required for __dirname in ES Modules
 import NotesRoutes from "./routes/NotesRoutes.js";
 import { connectDB } from "./config/db.js";
 import ratelimiter from "./middleware/rateLimiter.js";
@@ -10,27 +12,33 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Only enable CORS for development if needed, or configure it for specific origins in production
-if (process.env.NODE_ENV !== "production") {
-  app.use(
-    cors({
-      origin: "http://localhost:5173", // Your frontend development URL
-    })
-  );
-} else {
-  // For production, you might want to restrict CORS to your deployed frontend URL
-  // app.use(cors({ origin: "https://your-frontend-url.vercel.app" }));
-  // Or remove if Vercel handles it via proxy/rewrites
-}
+// ES Modules equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// CORS configuration (can be more specific in production if needed)
+// For a monorepo on Vercel, requests from frontend to backend are typically same-origin,
+// so explicit CORS headers might not be strictly necessary for API calls,
+// but it's good practice to have it if you anticipate cross-origin requests.
+app.use(cors());
 
 app.use(express.json());
 app.use(ratelimiter);
 
 app.use("/api/notes", NotesRoutes);
 
-// Removed the static file serving block for frontend, as frontend is deployed separately.
-// If you intend for this backend to also serve the frontend, this block would be re-added
-// and vercel.json would need a different configuration for a monorepo setup.
+// Serve frontend static files in production
+if (process.env.NODE_ENV === "production") {
+  // Path to the frontend's dist folder relative to the backend's server.js
+  // __dirname is Backend/src, so we go up two levels to the root, then into Frontend/dist
+  const frontendPath = path.join(__dirname, "../../Frontend/dist");
+  app.use(express.static(frontendPath));
+
+  // For any other route, serve the frontend's index.html
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
+}
 
 connectDB().then(() => {
   app.listen(PORT, () => {

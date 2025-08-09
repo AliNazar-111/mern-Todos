@@ -1,0 +1,20 @@
+{
+  "name": "todos",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000m\u0000e\u0000r\u0000n\u0000-\u0000T\u0000o\u0000d\u0000o\u0000s\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AliNazar-111/mern-Todos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AliNazar-111/mern-Todos/issues"
+  },
+  "homepage": "https://github.com/AliNazar-111/mern-Todos#readme"
+}

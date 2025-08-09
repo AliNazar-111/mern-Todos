@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
-    "start" : "npm run start --prefix Backend"
+    "start": "npm run start --prefix Backend"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/AliNazar-111/mern-Todos/issues"
   },
-  "homepage": "https://github.com/AliNazar-111/mern-Todos#readme"
+  "homepage": "https://github.com/AliNazar-111/mern-Todos#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }

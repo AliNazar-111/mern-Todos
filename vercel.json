@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "Backend/api/serverless.js", "use": "@vercel/node" },
+    { "src": "Frontend/package.json", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "Backend/api/serverless.js" },
+    { "src": "/(.*)", "dest": "Frontend/$1" }
+  ]
+}
